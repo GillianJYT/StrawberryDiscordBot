@@ -1,2 +1,3 @@
 rootProject.name = 'StrawberryDiscordBot'
+include('lib')
 
