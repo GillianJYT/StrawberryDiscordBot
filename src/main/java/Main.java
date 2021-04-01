@@ -6,13 +6,12 @@ import javax.security.auth.login.LoginException;
 
 // https://ci.dv8tion.net/job/JDA/javadoc/
 
-
 public class Main{
     private static String token;
 
     public static void main(String[] args) throws LoginException {
         // init
-        token = "ODI2ODc0ODIwNzIxMzc3Mjgx.YGS1Lw.FkT_jtMZLqWcfp-2FNqLT-wcN50";
+        token = System.getenv("TOKEN");
         JDA jda = JDABuilder.createDefault(token).build();
 
         MessageListener.InitializeCommands();
