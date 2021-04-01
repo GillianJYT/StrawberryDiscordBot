@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'org.bot.Main'
+group 'org.bot.StrawberryBot'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -22,11 +22,6 @@ dependencies {
 
 test {
     useJUnitPlatform()
-}
-
-jar {
-    baseName('strawberrybot-')
-    version('1.0-dep')
 }
 
 task stage(dependsOn: ['build', 'clean'])

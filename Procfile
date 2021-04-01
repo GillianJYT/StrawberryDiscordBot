@@ -1,1 +1,1 @@
-worker: java -jar target/strawberrybot-1.0-dep.jar
+worker: java -jar target/org.bot.StrawberryBot-1.0-SNAPSHOT.jar
