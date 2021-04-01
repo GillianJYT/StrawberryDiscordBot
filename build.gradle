@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'org.example'
+group 'org.bot.Main'
 version '1.0-SNAPSHOT'
 
 repositories {
