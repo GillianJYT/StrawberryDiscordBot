@@ -24,6 +24,11 @@ test {
     useJUnitPlatform()
 }
 
+jar {
+    baseName('strawberrybot-')
+    version('1.0-dep')
+}
+
 task stage(dependsOn: ['build', 'clean'])
 
 task copyToLib(type: Copy) {
