@@ -1,1 +1,1 @@
-worker: java $JAVA_OPTS -jar ./build/libs/StrawberryDiscordBot-1.0-SNAPSHOT.jar
+run: java $JAVA_OPTS -Dserver.port=$PORT -jar build/libs/StrawberryDiscordBot-1.0-SNAPSHOT.jar
