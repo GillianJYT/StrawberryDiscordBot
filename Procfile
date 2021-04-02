@@ -1,1 +1,1 @@
-worker: java -jar build/libs/StrawberryDiscordBot-1.0-SNAPSHOT.jar
+worker: java -jar target/strawberry.bot-1.0-SNAPSHOT.jar
