@@ -80,6 +80,20 @@
                     </archive>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>3.0.3</version>
+                <configuration>
+                    <includeTarget>false</includeTarget>
+                    <includes>
+                        <include>target/strawberrybot-1.0-SNAPSHOT.jar</include>
+                    </includes>
+                    <processTypes>
+                        <worker>java -jar target/strawberrybot-1.0-SNAPSHOT.jar</worker>
+                    </processTypes>
+                </configuration>
+            </plugin>
 <!--            <plugin>-->
 <!--                <groupId>org.apache.maven.plugins</groupId>-->
 <!--                <artifactId>maven-dependency-plugin</artifactId>-->
