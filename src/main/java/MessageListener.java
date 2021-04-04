@@ -62,6 +62,9 @@ public class MessageListener extends ListenerAdapter {
             if (!msg.getMember().hasPermission(Permission.VOICE_MUTE_OTHERS)) { // check mute permission
                 channel.sendMessage("You don't have permission to " + Cmds.get(1)).queue();
             }
+            else if (!msg.getMember().getVoiceState().inVoiceChannel()) { // check if user is connected to voice
+                channel.sendMessage("You are not connected to voice.").queue();
+            }
             else {
                 List<Member> members = msg.getMember().getVoiceState().getChannel().getMembers();
                 ExecutorService service = Executors.newCachedThreadPool();
@@ -83,6 +86,9 @@ public class MessageListener extends ListenerAdapter {
         else if (content.equals(specialCmd + Cmds.get(2))) {
             if (!msg.getMember().hasPermission(Permission.VOICE_MUTE_OTHERS)) { // check mute permission
                 channel.sendMessage("You don't have permission to " + Cmds.get(1)).queue();
+            }
+            else if (!msg.getMember().getVoiceState().inVoiceChannel()) { // check if user is connected to voice
+                channel.sendMessage("You are not connected to voice.").queue();
             }
             else {
                 List<Member> members = msg.getMember().getVoiceState().getChannel().getMembers();
