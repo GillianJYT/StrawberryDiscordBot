@@ -85,7 +85,8 @@
                 <artifactId>heroku-maven-plugin</artifactId>
                 <version>3.0.3</version>
                 <configuration>
-                    <includeTarget>false</includeTarget>
+                    <appName>strawberry-discord-bot</appName>
+                    <includeTarget>true</includeTarget>
                     <includes>
                         <include>target/strawberrybot-1.0-SNAPSHOT.jar</include>
                     </includes>

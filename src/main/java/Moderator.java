@@ -2,6 +2,7 @@ import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
@@ -11,62 +12,60 @@ import java.util.List;
 public class Moderator  extends ListenerAdapter {
     private static final String specialCmd = "~";
     public static final List<String> Cmds = new ArrayList<>();
-
-    public int count = 0;
+    public static final List<String> CmdDescriptions = new ArrayList<>();
 
     public static void InitializeCommands() {
         Cmds.add("mute");
         Cmds.add("unmute");
+
+        // descriptions
+        CmdDescriptions.add("mutes mentioned person");
+        CmdDescriptions.add("unmutes mentioned person");
     }
 
     public void onMessageReceived(MessageReceivedEvent event) {
         Message msg = event.getMessage();
         String content = msg.getContentRaw();
         MessageChannel channel = event.getChannel();
-        List<Member> mentioned = msg.getMentionedMembers();
+        List<Member> mentionedMembers = msg.getMentionedMembers();
+        List<Role> mentionedRoles = msg.getMentionedRoles();
 
         Member member;
 
-        if(content.startsWith(specialCmd + Cmds.get(count))) // mutes mentioned user
+        // ~mute @MEMBER
+        if(content.startsWith(specialCmd + Cmds.get(0) + " @"))
         {
-
-            if (mentioned.isEmpty()) {
-                channel.sendMessage("You did not specify the user \n example:" + specialCmd + Cmds.get(count) + " @MEMBER").queue();
+            if (mentionedMembers.isEmpty()) { // check that there is a mentioned user
+                channel.sendMessage("You did not specify the user or role \n example: " + specialCmd + Cmds.get(0) + " @MEMBER").queue();
+            }
+            else if (!mentionedMembers.get(0).getVoiceState().inVoiceChannel()) { // check if user is connected to voice
+                channel.sendMessage("@" + mentionedMembers.get(0).getNickname() + " is not connected to voice.").queue();
+            }
+            else if (!msg.getMember().hasPermission(Permission.VOICE_MUTE_OTHERS)) { // check mute permission
+                channel.sendMessage("You don't have permission to " + Cmds.get(0)).queue();
             }
             else {
                 member = msg.getMentionedMembers().get(0);
-                if (msg.getMember().hasPermission(Permission.VOICE_MUTE_OTHERS))
-                {
-                    // mute
-//                    event.getGuild().mute(member, true).queue();
-                    member.mute(true).queue();
-                }
-                else
-                {
-                    // error
-                    channel.sendMessage("You don't have permission to" + Cmds.get(count)).queue();
-                }
+                // mute
+                member.mute(true).queue();
             }
-
-            count++;
         }
-        else if(content.startsWith(specialCmd + Cmds.get(count))) // unmutes mentioned user
+        // ~unmute @MEMBER
+        else if(content.startsWith(specialCmd + Cmds.get(1) + " @")) // unmutes mentioned user
         {
-            if (!mentioned.isEmpty()) {
-                member = msg.getMentionedMembers().get(0);
-                if (msg.getMember().hasPermission(Permission.VOICE_MUTE_OTHERS))
-                {
-                    // unmute
-                    member.mute(false).queue();
-                }
-                else
-                {
-                    // error
-                    channel.sendMessage("You don't have permission to" + Cmds.get(count)).queue();
-                }
+            if (mentionedMembers.isEmpty()) { // check that there is a mentionedMembers user
+                channel.sendMessage("You did not specify the user \n example: " + specialCmd + Cmds.get(1) + " @MEMBER").queue();
+            }
+            else if (!mentionedMembers.get(0).getVoiceState().inVoiceChannel()) { // check if user is connected to voice
+                channel.sendMessage("@" + mentionedMembers.get(0).getNickname() + " is not connected to voice.").queue();
+            }
+            else if (!msg.getMember().hasPermission(Permission.VOICE_MUTE_OTHERS)) { // check mute permission
+                channel.sendMessage("You don't have permission to " + Cmds.get(1)).queue();
             }
             else {
-                channel.sendMessage("You did not specify the user \n example:" + specialCmd + Cmds.get(count) + " @MEMBER").queue();
+                member = msg.getMentionedMembers().get(0);
+                // unmute
+                member.mute(false).queue();
             }
         }
     }

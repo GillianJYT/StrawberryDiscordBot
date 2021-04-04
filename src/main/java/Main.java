@@ -5,6 +5,8 @@ import net.dv8tion.jda.api.entities.Activity;
 import javax.security.auth.login.LoginException;
 
 // https://ci.dv8tion.net/job/JDA/javadoc/
+// run 'mvn heroku:deploy' in cmd line
+// run 'mvn install', 'heroku local', ctrl+C stops local
 
 public class Main{
     private static String token;
