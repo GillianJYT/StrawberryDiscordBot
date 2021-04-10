@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Moderator  extends ListenerAdapter {
-    private static final String specialCmd = "~";
     public static final List<String> Cmds = new ArrayList<>();
     public static final List<String> CmdDescriptions = new ArrayList<>();
 
@@ -33,10 +32,10 @@ public class Moderator  extends ListenerAdapter {
         Member member;
 
         // ~mute @MEMBER
-        if(content.startsWith(specialCmd + Cmds.get(0) + " @"))
+        if(content.startsWith(Main.specialCmd + Cmds.get(0) + " @"))
         {
             if (mentionedMembers.isEmpty()) { // check that there is a mentioned user
-                channel.sendMessage("You did not specify the user or role \n example: " + specialCmd + Cmds.get(0) + " @MEMBER").queue();
+                channel.sendMessage("You did not specify the user or role \n example: " + Main.specialCmd + Cmds.get(0) + " @MEMBER").queue();
             }
             else if (!mentionedMembers.get(0).getVoiceState().inVoiceChannel()) { // check if user is connected to voice
                 channel.sendMessage("@" + mentionedMembers.get(0).getNickname() + " is not connected to voice.").queue();
@@ -51,10 +50,10 @@ public class Moderator  extends ListenerAdapter {
             }
         }
         // ~unmute @MEMBER
-        else if(content.startsWith(specialCmd + Cmds.get(1) + " @")) // unmutes mentioned user
+        else if(content.startsWith(Main.specialCmd + Cmds.get(1) + " @")) // unmutes mentioned user
         {
             if (mentionedMembers.isEmpty()) { // check that there is a mentionedMembers user
-                channel.sendMessage("You did not specify the user \n example: " + specialCmd + Cmds.get(1) + " @MEMBER").queue();
+                channel.sendMessage("You did not specify the user \n example: " + Main.specialCmd + Cmds.get(1) + " @MEMBER").queue();
             }
             else if (!mentionedMembers.get(0).getVoiceState().inVoiceChannel()) { // check if user is connected to voice
                 channel.sendMessage("@" + mentionedMembers.get(0).getNickname() + " is not connected to voice.").queue();
