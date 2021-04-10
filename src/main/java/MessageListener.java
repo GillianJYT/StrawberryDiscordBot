@@ -52,7 +52,7 @@ public class MessageListener extends ListenerAdapter {
             }
 
             for (int i =0; i < League.Cmds.size(); i++) {
-                emb.addField(Main.specialCmd + League.Cmds.get(i) + " @MEMBER", League.CmdDescriptions.get(i), false);
+                emb.addField(Main.specialCmd + League.Cmds.get(i) + " IGN", League.CmdDescriptions.get(i), false);
             }
 
             channel.sendMessage(emb.build()).queue();
