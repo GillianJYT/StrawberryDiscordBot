@@ -51,6 +51,10 @@ public class MessageListener extends ListenerAdapter {
                 emb.addField(Main.specialCmd + Moderator.Cmds.get(i) + " @MEMBER", Moderator.CmdDescriptions.get(i), false);
             }
 
+            for (int i =0; i < League.Cmds.size(); i++) {
+                emb.addField(Main.specialCmd + League.Cmds.get(i) + " @MEMBER", League.CmdDescriptions.get(i), false);
+            }
+
             channel.sendMessage(emb.build()).queue();
             emb.clear();
         }
