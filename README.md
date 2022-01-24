@@ -1,8 +1,8 @@
-# StrawberryDiscordBot
+# Strawberry - Discord Bot
 
 General Discord bot programmed in Java.
 
-Prefix: ~ (tilda)
+Command Prefix: ~ (tilda)
 
 ## General Commands
 
@@ -16,10 +16,10 @@ Prefix: ~ (tilda)
 
 ## League of Legends Commands
 
-| command | action |
-|-|-|
-| ~live SUMMONER [broken] | displays stats of live game |
-| ~mastery SUMMONER | displays top 3 mastery champions |
+| command | action | requirements |
+|-|-|-|
+| ~live SUMMONER [broken] | displays stats of live game | <ul><li>SUMMONER must exist in NA region</li><li>SUMMONER must be in a live game</li></ul> |
+| ~mastery SUMMONER | displays top 3 mastery champions | <ul><li>SUMMONER must exist in NA region</li></ul> |
 
 ## In development
 
