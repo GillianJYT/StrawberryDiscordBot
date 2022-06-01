@@ -12,6 +12,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class MessageListener extends ListenerAdapter {
+    private static final String specialCmd = "~";
 
     private static final List<String> Cmds = new ArrayList<>();
     private static final List<String> CmdDescriptions = new ArrayList<>();
@@ -36,19 +37,18 @@ public class MessageListener extends ListenerAdapter {
         MessageChannel channel = event.getChannel();
 
         // ~commands --> outputs all commands
-        if (content.equals(Main.specialCmd + "commands"))
+        if (content.equals(specialCmd + "commands"))
         {
             EmbedBuilder emb = new EmbedBuilder();
 
             emb.setTitle("Strawbery Bot Commands");
-            emb.setColor(0xfc0366);
 
             for (int i = 0; i < Cmds.size(); i++) {
-                emb.addField(Main.specialCmd + Cmds.get(i), CmdDescriptions.get(i), false);
+                emb.addField(specialCmd + Cmds.get(i), CmdDescriptions.get(i), false);
             }
 
             for (int i = 0; i < Moderator.Cmds.size(); i++) {
-                emb.addField(Main.specialCmd + Moderator.Cmds.get(i) + " @MEMBER", Moderator.CmdDescriptions.get(i), false);
+                emb.addField(specialCmd + Moderator.Cmds.get(i) + " @MEMBER", Moderator.CmdDescriptions.get(i), false);
             }
 
             for (int i =0; i < League.Cmds.size(); i++) {
@@ -56,14 +56,13 @@ public class MessageListener extends ListenerAdapter {
             }
 
             channel.sendMessage(emb.build()).queue();
-            emb.clear();
         }
         // ~chan --> outputs "Chan is gae"
-        else if(content.equals(Main.specialCmd + Cmds.get(0))) {
+        else if(content.equals(specialCmd + Cmds.get(0))) {
             channel.sendMessage("Chan is gae").queue();
         }
         // mute everyone in same call
-        else if (content.equals(Main.specialCmd + Cmds.get(1))) {
+        else if (content.equals(specialCmd + Cmds.get(1))) {
             if (!msg.getMember().hasPermission(Permission.VOICE_MUTE_OTHERS)) { // check mute permission
                 channel.sendMessage("You don't have permission to " + Cmds.get(1)).queue();
             }
@@ -85,7 +84,7 @@ public class MessageListener extends ListenerAdapter {
             }
         }
         // unmute everyone in same call
-        else if (content.equals(Main.specialCmd + Cmds.get(2))) {
+        else if (content.equals(specialCmd + Cmds.get(2))) {
             if (!msg.getMember().hasPermission(Permission.VOICE_MUTE_OTHERS)) { // check mute permission
                 channel.sendMessage("You don't have permission to " + Cmds.get(1)).queue();
             }

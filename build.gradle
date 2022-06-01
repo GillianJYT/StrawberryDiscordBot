@@ -1,32 +1,32 @@
-//apply plugin: 'java'
-//apply plugin: 'maven-publish'
-//
-//group = 'org.bot.StrawberryBot'
-//version = '1.0-SNAPSHOT'
-//
-//repositories {
-//    jcenter()
-//    maven {
-//        name 'm2-dv8tion'
-//        url 'https://m2.dv8tion.net/releases'
-//    }
-//}
-//
-//dependencies {
-//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-//    compileOnly 'net.dv8tion:JDA:4.2.0_168'
-//}
-//
-//test {
-//    useJUnitPlatform()
-//}
-//
-//task stage(dependsOn: ['build', 'clean'])
-//
-//task copyToLib(type: Copy) {
-//    into "$buildDir/libs"
-//    from(configurations.compile)
-//}
-//
-//stage.dependsOn(copyToLib)
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+
+group = 'org.bot.StrawberryBot'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    jcenter()
+    maven {
+        name 'm2-dv8tion'
+        url 'https://m2.dv8tion.net/releases'
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    compileOnly 'net.dv8tion:JDA:4.2.0_168'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task stage(dependsOn: ['build', 'clean'])
+
+task copyToLib(type: Copy) {
+    into "$buildDir/libs"
+    from(configurations.compile)
+}
+
+stage.dependsOn(copyToLib)
