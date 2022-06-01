@@ -50,11 +50,7 @@ public class MessageListener extends ListenerAdapter {
             for (int i = 0; i < Moderator.Cmds.size(); i++) {
                 emb.addField(specialCmd + Moderator.Cmds.get(i) + " @MEMBER", Moderator.CmdDescriptions.get(i), false);
             }
-
-            for (int i =0; i < League.Cmds.size(); i++) {
-                emb.addField(Main.specialCmd + League.Cmds.get(i) + " IGN", League.CmdDescriptions.get(i), false);
-            }
-
+			
             channel.sendMessage(emb.build()).queue();
         }
         // ~chan --> outputs "Chan is gae"
