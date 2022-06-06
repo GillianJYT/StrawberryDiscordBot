@@ -13,7 +13,7 @@ public class Main{
 
     public static void main(String[] args) throws LoginException {
         // init
-        token = "ODI2ODc0ODIwNzIxMzc3Mjgx.YGS1Lw.01toAx-_VJyc82K51CgBuL1jp34"; //System.getenv("TOKEN");
+        token = System.getenv("TOKEN");
         JDA jda = JDABuilder.createDefault(token).build();
 
         MessageListener.InitializeCommands();
