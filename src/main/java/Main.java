@@ -18,10 +18,12 @@ public class Main{
 
         MessageListener.InitializeCommands();
         Moderator.InitializeCommands();
+        Poll.InitializeCommands();
 
         // events
         jda.addEventListener(new MessageListener());
         jda.addEventListener(new Moderator());
+        jda.addEventListener(new Poll());
 
         // status
         jda.getPresence().setActivity(Activity.playing("~commands"));
