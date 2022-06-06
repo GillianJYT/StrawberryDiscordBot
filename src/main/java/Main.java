@@ -13,15 +13,17 @@ public class Main{
 
     public static void main(String[] args) throws LoginException {
         // init
-        token = System.getenv("TOKEN");
+        token = "ODI2ODc0ODIwNzIxMzc3Mjgx.YGS1Lw.01toAx-_VJyc82K51CgBuL1jp34"; //System.getenv("TOKEN");
         JDA jda = JDABuilder.createDefault(token).build();
 
         MessageListener.InitializeCommands();
         Moderator.InitializeCommands();
+        Poll.InitializeCommands();
 
         // events
         jda.addEventListener(new MessageListener());
         jda.addEventListener(new Moderator());
+        jda.addEventListener(new Poll());
 
         // status
         jda.getPresence().setActivity(Activity.playing("~commands"));

@@ -50,6 +50,10 @@ public class MessageListener extends ListenerAdapter {
             for (int i = 0; i < Moderator.Cmds.size(); i++) {
                 emb.addField(specialCmd + Moderator.Cmds.get(i) + " @MEMBER", Moderator.CmdDescriptions.get(i), false);
             }
+
+            for (int i = 0; i < Poll.Cmds.size(); i++) {
+                emb.addField(specialCmd + Poll.Cmds.get(i) + " something", Poll.CmdDescriptions.get(i), false);
+            }
 			
             channel.sendMessage(emb.build()).queue();
         }
